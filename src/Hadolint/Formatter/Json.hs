@@ -25,7 +25,7 @@ instance (Stream s, ShowErrorComponent e) => ToJSON (JsonFormat s e) where
         object
             [ "file" .= filename
             , "line" .= (show linenumber)
-            , "column" .= (show 1)
+            , "column" .= "1"
             , "level" .= severityText (severity metadata)
             , "code" .= code metadata
             , "message" .= message metadata
