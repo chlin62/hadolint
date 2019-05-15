@@ -437,7 +437,7 @@ aptGetVersionPinned = instructionRule code severity message check
     code = "DL3008"
     severity = WarningC
     message =
-        "Pin versions in apt get install. Instead of `apt-get install <package>` use `apt-get \
+        "Pin versions in apt get install. Instead of `yum install <package>` use `yum \
         \install <package>=<version>`"
     check (Run args) = argumentsRule (all versionFixed . aptGetPackages) args
     check _ = True
@@ -447,7 +447,7 @@ aptGetPackages :: Shell.ParsedShell -> [String]
 aptGetPackages args =
     [ arg
     | cmd <- dropTarget <$> Shell.findCommands args
-    , Shell.cmdHasArgs "apt-get" ["install"] cmd
+    , Shell.cmdHasArgs "yum" ["install"] cmd
     , arg <- Shell.getArgsNoFlags cmd
     , arg /= "install"
     ]
@@ -459,7 +459,7 @@ aptGetCleanup dockerfile = instructionRuleState code severity message check Noth
   where
     code = "DL3009"
     severity = InfoC
-    message = "Delete the apt-get lists after installing something"
+    message = "Delete the yum lists after installing something"
     -- | 'check' returns a tuple (state, check_result)
     --   The state in this case is the FROM instruction where the current instruction we are
     --   inspecting is nested in.
@@ -469,14 +469,14 @@ aptGetCleanup dockerfile = instructionRuleState code severity message check Noth
     check st@(Just (line, From baseimage)) _ (Run args) =
         withState st (argumentsRule (didNotForgetToCleanup line baseimage) args)
     check st _ _ = withState st True
-    -- Check all commands in the script for the presence of apt-get update
+    -- Check all commands in the script for the presence of yum update
     -- If the command is there, then we need to verify that the user is also removing the lists folder
     didNotForgetToCleanup line baseimage args
         | not (hasUpdate args) || not (imageIsUsed line baseimage) = True
         | otherwise = hasCleanup args
     hasCleanup args =
         any (Shell.cmdHasArgs "rm" ["-rf", "/var/lib/apt/lists/*"]) (Shell.findCommands args)
-    hasUpdate args = any (Shell.cmdHasArgs "apt-get" ["update"]) (Shell.findCommands args)
+    hasUpdate args = any (Shell.cmdHasArgs "yum" ["update"]) (Shell.findCommands args)
     imageIsUsed line baseimage = isLastImage line baseimage || imageIsUsedLater line baseimage
     isLastImage line baseimage =
         case reverse (allFromImages dockerfile) of
