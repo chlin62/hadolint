@@ -802,7 +802,7 @@ registryIsAllowed allowed = instructionRuleState code severity message check Set
         imageName == "scratch" ||
         Set.member "docker.io" allowed || Set.member "hub.docker.com" allowed
  
-noApkUpgrade :: Rule
+noYumCommands :: Rule
 noYumCommands = instructionRule code severity message check
   where
     code = "TSMC1001"
