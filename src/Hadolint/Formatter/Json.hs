@@ -24,8 +24,8 @@ instance (Stream s, ShowErrorComponent e) => ToJSON (JsonFormat s e) where
     toJSON (JsonCheck RuleCheck {..}) =
         object
             [ "file" .= filename
-            , "line" .= linenumber
-            , "column" .= (1 :: Int)
+            , "line" .= (show linenumber)
+            , "column" .= (show 1)
             , "level" .= severityText (severity metadata)
             , "code" .= code metadata
             , "message" .= message metadata
