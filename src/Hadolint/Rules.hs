@@ -787,7 +787,7 @@ usePipefail = instructionRuleState code severity message check False
 registryIsAllowed :: Set.Set Registry -> Rule
 registryIsAllowed allowed = instructionRuleState code severity message check Set.empty
   where
-    code = "DL3026"
+    code = "TSMC1000"
     severity = ErrorC
     message = "Use only an allowed registry in the FROM image"
     check st _ (From BaseImage {image, alias}) = withState (Set.insert alias st) (doCheck st image)
