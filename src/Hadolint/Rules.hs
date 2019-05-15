@@ -798,7 +798,7 @@ registryIsAllowed allowed = instructionRuleState code severity message check Set
     -- or if the image registry is in the set of allowed registries
     doCheck st img = Set.member (toImageAlias img) st || Set.null allowed || isAllowed img
     isAllowed Image {registryName = Just registry} = Set.member registry allowed
-    isAllowed Image {registryName = Nothing, imageName} = Set.member "dockeruncer.tsmc.com.tw/base" allowed
+    isAllowed Image {registryName = Nothing} = Set.member "dockeruncer.tsmc.com.tw/base" allowed
  
 noYumCommands :: Rule
 noYumCommands = instructionRule code severity message check
