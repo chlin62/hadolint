@@ -808,5 +808,5 @@ noYumCommands = instructionRule code severity message check
     code = "TSMC1001"
     severity = ErrorC
     message = "Do not use yum command"
-    check (Run args) = argumentsRule (Shell.noCommands (Shell.cmdHasArgs "apk" )) args
+    check (Run args) = argumentsRule (Shell.noCommands (Shell.cmdHasArgs "yum" ["install", "update", "upgrade"] )) args
     check _ = True
