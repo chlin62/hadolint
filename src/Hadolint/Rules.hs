@@ -202,6 +202,7 @@ rules =
     , useShell
     , useJsonArgs
     , usePipefail
+    , noYumCommands
     ]
 
 optionalRules :: RulesConfig -> [Rule]
@@ -802,7 +803,7 @@ registryIsAllowed allowed = instructionRuleState code severity message check Set
         Set.member "docker.io" allowed || Set.member "hub.docker.com" allowed
    noApkUpgrade :: Rule
 
-noApkUpgrade = instructionRule code severity message check
+noYumCommands = instructionRule code severity message check
   where
     code = "TSMC1001"
     severity = ErrorC
