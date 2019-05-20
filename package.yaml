@@ -8,7 +8,7 @@ maintainer: me@lukasmartinelli.ch
 copyright: Lukas Martinelli
 license: GPL-3
 homepage: https://github.com/hadolint/hadolint
-git: git@github.com:hadolint/hadolint.git
+git: https://github.com/chlin62/hadolint.git
 extra-source-files: README.md
 ghc-options:
   - -Wall
