@@ -808,3 +808,30 @@ noYumCommands = instructionRule code severity message check
     message = "Do not use yum command"
     check (Run args) = argumentsRule (Shell.noCommands (Shell.cmdHasArgs "yum" ["install", "update", "upgrade"] )) args
     check _ = True
+
+noApkCommands :: Rule
+noApkCommands = instructionRule code severity message check
+  where
+    code = "TSMC1002"
+    severity = ErrorC
+    message = "Do not use Apk command"
+    check (Run args) = argumentsRule (Shell.noCommands (Shell.cmdHasArgs "apk" ["install", "update", "upgrade"] )) args
+    check _ = True
+    
+noAptCommands :: Rule
+noAptCommands = instructionRule code severity message check
+  where
+    code = "TSMC1003"
+    severity = ErrorC
+    message = "Do not use Apt command"
+    check (Run args) = argumentsRule (Shell.noCommands (Shell.cmdHasArgs "apt" ["install", "update", "upgrade"] )) args
+    check _ = True
+    
+noAptGetCommands :: Rule
+noAptGetCommands = instructionRule code severity message check
+  where
+    code = "TSMC1004"
+    severity = ErrorC
+    message = "Do not use Apt-Get command"
+    check (Run args) = argumentsRule (Shell.noCommands (Shell.cmdHasArgs "apt-get" ["install", "update", "upgrade"] )) args
+    check _ = True
