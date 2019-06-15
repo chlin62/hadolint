@@ -14,5 +14,7 @@ steps:
   displayName: 'install haskell'
 - script: stack setup --allow-different-user
   displayName: 'haskell-setup'
+- script: stack install --allow-different-user
+  displayName: 'haskell-setup'
 
 
