@@ -10,6 +10,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- script: curl -sSL https://get.haskellstack.org/ | sh
+  displayName: 'install haskell'
 - script: stack setup --allow-different-user
   displayName: 'haskell-setup'
 
