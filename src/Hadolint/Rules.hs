@@ -203,6 +203,9 @@ rules =
     , useJsonArgs
     , usePipefail
     , noYumCommands
+    , noApkCommands
+    , noAptCommands
+    , noAptGetCommands
     ]
 
 optionalRules :: RulesConfig -> [Rule]
