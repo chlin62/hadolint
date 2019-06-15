@@ -1,5 +1,4 @@
-[![Linux/OSX Build Status][travis-img]][travis]
-[![Windows Build status][appveyor-img]][appveyor]
+[![Build Status](https://dev.azure.com/tsmc-devops-poc/dockerlint-haskell/_apis/build/status/chlin62.hadolint?branchName=master)](https://dev.azure.com/tsmc-devops-poc/dockerlint-haskell/_build/latest?definitionId=7&branchName=master)
 [![GPL-3 licensed][license-img]][license]
 [![GitHub release][release-img]][release]
 [![Github downloads][downloads-img]]()
