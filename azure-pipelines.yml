@@ -16,15 +16,12 @@ steps:
   displayName: 'haskell-setup'
 - script: stack install --allow-different-user
   displayName: 'Build Code'
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '/home/vsts/.local/bin'
-    Contents: 'dockerlint'
-    TargetFolder: '/home/vsts/work/1/s'
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: '$(system.defaultworkingdirectory)'
     ArtifactName: 'artifact'
     publishLocation: 'Container'
+
+
 
 
